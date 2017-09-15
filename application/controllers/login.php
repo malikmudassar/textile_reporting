@@ -12,7 +12,7 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model('login_model');
-        $this->load->library('My_PHPMailer');
+        //$this->load->library('My_PHPMailer');
     }
 
     public function index()
@@ -53,7 +53,7 @@ class Login extends CI_Controller
                         }
                         elseif($user['role']==2)
                         {
-                            $user['type']='team';
+                            $user['type']='admin';
                         }
                         elseif($user['role']==3)
                         {
@@ -264,6 +264,13 @@ class Login extends CI_Controller
             $this->load->view('static/change_password');
         }
 
+    }
+    /*----Function Logout----*/
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 
 

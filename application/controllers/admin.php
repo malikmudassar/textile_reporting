@@ -13,7 +13,7 @@ class Admin extends CI_Controller
         $this->load->model('admin_model');
         /*$this->load->model('team_model');
         $this->load->model('manager_model');*/
-        $this->load->library('My_PHPMailer');
+        //$this->load->library('My_PHPMailer');
     }
 
     /*----Dashboard-----*/
