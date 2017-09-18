@@ -3,7 +3,7 @@
 
         <div class="title-bar">
             <h1 class="title-bar-title" align="center">
-                <span class="d-ib"> Manage Menu Items</span>
+                <span class="d-ib"> Manage Departments</span>
             </h1>
         </div>
         <hr style="border-color:#2f4050 ">
@@ -24,9 +24,9 @@
                             <tr>
                                 <th>Sr. #</th>
                                 <th>Name</th>
-                                <th>Parent</th>
-                                <th>Class</th>
-                                <th>URL</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -36,11 +36,11 @@
                                 <tr>
                                     <td data-order="Jessica Brown"><strong><?php echo $i+1;?></strong></td>
                                     <td><?php echo $menu_items[$i]['name']?></td>
-                                    <td><?php echo $menu_items[$i]['parent']?></td>
-                                    <td><?php echo $menu_items[$i]['class']?></td>
-                                    <td><?php echo $menu_items[$i]['url']?></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/edit_admin_menu/'.$menu_items[$i]['id'];?>" class="btn btn-success"><i class="icon icon-pencil"></i></a>
+                                        <a href="<?php echo base_url().'admin/edit_category/'.$menu_items[$i]['id'];?>" class="btn btn-success"><i class="icon icon-pencil"></i></a>
                                         <button class="btn btn-danger" onclick="validate(this)" value="<?php echo $menu_items[$i]['id']?>"><i class="icon icon-times"></i></button>
                                     </td>
 
@@ -67,7 +67,7 @@
 
         swal({
                 title: "Are you sure?",
-                text: "You want to delete this Menu Item!",
+                text: "You want to delete this category!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -75,7 +75,7 @@
                 closeOnConfirm: false }, function()
             {
                 swal("Deleted!", "Menu Item has been Deleted.", "success");
-                $(location).attr('href','<?php echo base_url()?>admin/del_admin_menu/'+id);
+                $(location).attr('href','<?php echo base_url()?>admin/del_category/'+id);
             }
         );
     }

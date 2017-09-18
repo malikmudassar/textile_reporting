@@ -3,7 +3,7 @@
 
         <div class="title-bar">
             <h1 class="title-bar-title" align="center">
-                <span class="d-ib"> Manage Menu Items</span>
+                <span class="d-ib"> Manage Defect Types</span>
             </h1>
         </div>
         <hr style="border-color:#2f4050 ">
@@ -16,7 +16,7 @@
                             <button type="button" class="card-action card-reload" title="Reload"></button>
                             <button type="button" class="card-action card-remove" title="Remove"></button>
                         </div>
-                        <strong>Menu Item List</strong>
+                        <strong>Item List</strong>
                     </div>
                     <div class="card-body">
                         <table id="demo-datatables-5" class="table table-striped table-bordered table-nowrap dataTable" cellspacing="0" width="100%">
@@ -24,9 +24,9 @@
                             <tr>
                                 <th>Sr. #</th>
                                 <th>Name</th>
-                                <th>Parent</th>
-                                <th>Class</th>
-                                <th>URL</th>
+                                <th>Defect Category</th>
+                                <th></th>
+                                <th></th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -36,11 +36,11 @@
                                 <tr>
                                     <td data-order="Jessica Brown"><strong><?php echo $i+1;?></strong></td>
                                     <td><?php echo $menu_items[$i]['name']?></td>
-                                    <td><?php echo $menu_items[$i]['parent']?></td>
-                                    <td><?php echo $menu_items[$i]['class']?></td>
-                                    <td><?php echo $menu_items[$i]['url']?></td>
+                                    <td><?php echo $menu_items[$i]['category']?></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
-                                        <a href="<?php echo base_url().'admin/edit_admin_menu/'.$menu_items[$i]['id'];?>" class="btn btn-success"><i class="icon icon-pencil"></i></a>
+                                        <a href="<?php echo base_url().'admin/edit_defect_type/'.$menu_items[$i]['id'];?>" class="btn btn-success"><i class="icon icon-pencil"></i></a>
                                         <button class="btn btn-danger" onclick="validate(this)" value="<?php echo $menu_items[$i]['id']?>"><i class="icon icon-times"></i></button>
                                     </td>
 
@@ -74,8 +74,8 @@
                 confirmButtonText: "Yes, Delete it!",
                 closeOnConfirm: false }, function()
             {
-                swal("Deleted!", "Menu Item has been Deleted.", "success");
-                $(location).attr('href','<?php echo base_url()?>admin/del_admin_menu/'+id);
+                swal("Deleted!", "Defect Type has been Deleted.", "success");
+                $(location).attr('href','<?php echo base_url()?>admin/del_defect_type/'+id);
             }
         );
     }

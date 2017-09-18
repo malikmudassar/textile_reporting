@@ -10,6 +10,7 @@
     <script src="<?php echo base_url(). 'assets/js/application.min.js'; ?>"></script>
     <script src="<?php echo base_url(). 'assets/js/demo.min.js'; ?>"></script>
     <script src="<?php echo base_url(). 'assets/js/toastr.min.js'; ?>"></script>
+    <script src="<?php echo base_url(). 'assets/js/jquery-3.2.1.min.js'; ?>"></script>
 
 
      <script>
