@@ -219,4 +219,34 @@ class Admin_model extends CI_Model
                     ->get()->result_array();
         return $st[0][$field];
     }
+
+    public function getDefectReports()
+    {
+        return $this->db->select('*')->from('defect_report')->get()->result_array();
+    }
+    public function getReportSummary($reportId)
+    {
+        $data['result']=array();
+        $data['report']=$this->getById($reportId,'defect_report');
+        $data['categories']=$this->db->query('SELECT defect_report_categories.*, dc.name as category
+                                      FROM defect_report_categories
+                                      INNER JOIN defect_categories dc on dc.id=defect_report_categories.cat_id
+                                      WHERE defect_report_categories.report_id='.$reportId)->result_array();
+        for($i=0;$i<count($data['categories']);$i++)
+        {
+            $data['result'][$data['categories'][$i]['cat_id']]=array();
+            $st=$this->db->query('SELECT sum(major) as major from defect_report_detail where cat_id='.$data['categories'][$i]['cat_id'].' AND report_id='.$reportId)->result_array();
+            $data['result'][$data['categories'][$i]['cat_id']]['major']= $st[0]['major'];
+            $st=$this->db->query('SELECT sum(minor) as minor from defect_report_detail where cat_id='.$data['categories'][$i]['cat_id'].' AND report_id='.$reportId)->result_array();
+            $data['result'][$data['categories'][$i]['cat_id']]['minor']= $st[0]['minor'];
+            $data['result'][$data['categories'][$i]['cat_id']]['total']=$data['result'][$data['categories'][$i]['cat_id']]['major']+$data['result'][$data['categories'][$i]['cat_id']]['minor'];
+            $data['result'][$data['categories'][$i]['cat_id']]['majorpercent']=($data['result'][$data['categories'][$i]['cat_id']]['major']/$data['report']['check_qty'])*100;
+            $data['result'][$data['categories'][$i]['cat_id']]['minorpercent']=($data['result'][$data['categories'][$i]['cat_id']]['minor']/$data['report']['check_qty'])*100;
+            $data['result'][$data['categories'][$i]['cat_id']]['totalpercent']=($data['result'][$data['categories'][$i]['cat_id']]['total']/$data['report']['check_qty'])*100;
+            $data['result'][$data['categories'][$i]['cat_id']]['category']=$data['categories'][$i]['category'];
+        }
+
+        return $data;
+
+    }
 }

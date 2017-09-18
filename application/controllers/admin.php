@@ -702,5 +702,40 @@ class Admin extends CI_Controller
         }
 
     }
+    public function manage_defect_reports()
+    {
+        if($this->isLoggedIn())
+        {
+            $data['menu']=$this->admin_model->getMenuItems();
+            $data['menu_items']=$this->admin_model->getDefectReports();
+            //echo '<pre>';print_r($data);exit;
+            $data['title']='Technologicx | Project Management';
+            $this->load->view('static/head',$data);
+            $this->load->view('static/header');
+            $this->load->view('static/sidebar');
+            $this->load->view('admin/manage_defect_reports');
+            $this->load->view('static/footer');
+        }
+        else
+        {
+            redirect(base_url().'admin/login');
+        }
+    }
+
+    public function defect_report_summary()
+    {
+        $reportId=$this->uri->segment(3);
+        $data['menu']=$this->admin_model->getMenuItems();
+        $data['report']=$this->admin_model->getById($reportId,'defect_report');
+        $data['result']=$this->admin_model->getReportSummary($reportId);
+        //echo '<pre>';print_r($data['result']);exit;
+        $data['title']='Technologicx | Project Management';
+        $this->load->view('static/head',$data);
+        $this->load->view('static/header');
+        $this->load->view('static/sidebar');
+        $this->load->view('admin/defect_report_summary');
+        $this->load->view('static/footer');
+
+    }
 
 }
