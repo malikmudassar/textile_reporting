@@ -8,7 +8,7 @@
                             <button type="button" class="card-action card-toggler" title="Collapse"></button>
                             <button type="button" class="card-action card-reload" title="Reload"></button>
                         </div>
-                        <strong>Report Summary</strong>
+                        <strong>Report</strong>
                     </div>
 
                     <div class="card-body" data-toggle="match-height">
@@ -45,6 +45,30 @@
                             <div class="col-md-4"><?php echo $report['fabric']?> </div>
                             <div class="col-md-2"><label>Report Date</label></div>
                             <div class="col-md-4"><?php echo $report['created_at']?> </div>
+                        </div>
+                        <hr>
+                        <strong>Short Summary</strong>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-hover">
+                                    <tr>
+                                        <th>Department</th>
+                                        <th>OK PCS</th>
+                                        <th>OK %</th>
+                                        <th>OUT PCS</th>
+                                        <th>OUT %</th>
+                                    </tr>
+                                    <?php foreach($result['result'] as $row){?>
+                                    <tr>
+                                        <td><?php echo $row['category']?></td>
+                                        <td><?php echo $row['ok_pcs']?></td>
+                                        <td><?php echo $row['ok_per']?></td>
+                                        <td><?php echo $row['out_pcs']?></td>
+                                        <td><?php echo $row['out_per']?></td>
+                                    </tr>
+                                    <?php }?>
+                                </table>
+                            </div>
                         </div>
                         <hr>
                         <?php

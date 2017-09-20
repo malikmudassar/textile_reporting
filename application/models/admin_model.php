@@ -244,6 +244,10 @@ class Admin_model extends CI_Model
             $data['result'][$data['categories'][$i]['cat_id']]['minorpercent']=($data['result'][$data['categories'][$i]['cat_id']]['minor']/$data['report']['check_qty'])*100;
             $data['result'][$data['categories'][$i]['cat_id']]['totalpercent']=($data['result'][$data['categories'][$i]['cat_id']]['total']/$data['report']['check_qty'])*100;
             $data['result'][$data['categories'][$i]['cat_id']]['category']=$data['categories'][$i]['category'];
+            $data['result'][$data['categories'][$i]['cat_id']]['out_pcs']=$data['result'][$data['categories'][$i]['cat_id']]['total'];
+            $data['result'][$data['categories'][$i]['cat_id']]['out_per']=($data['result'][$data['categories'][$i]['cat_id']]['out_pcs']/$data['report']['check_qty'])*100;
+            $data['result'][$data['categories'][$i]['cat_id']]['ok_pcs']=$data['report']['check_qty']-$data['result'][$data['categories'][$i]['cat_id']]['out_pcs'];
+            $data['result'][$data['categories'][$i]['cat_id']]['ok_per']=($data['result'][$data['categories'][$i]['cat_id']]['ok_pcs']/$data['report']['check_qty'])*100;
         }
 
         return $data;
